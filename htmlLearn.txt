@@ -1,0 +1,280 @@
+一.HTML基础
+    1.实例
+	   <!DOCTYPE html>
+	   <html>
+	   <head>
+	   <meta charset="utf-8">
+	   <title>菜鸟教程(runoob.com)</title>
+	   </head>
+	   <body>
+	   <h1>我的第一个标题</h1>
+	   </body>
+	   </html>
+	2.链接
+	   <a herf="http://wwww.runoob.com">
+	3.图像
+	   <img src="/images/logo.png" width="256" height="39" />
+	   
+二.HTML属性
+    1.常见
+	    a.class 为html元素定义一个或多个类名（classname）
+		b.id 定义元素的唯一id
+		c.style 定义元素的行内样式（inline style)
+		d.title 描述了元素的额外信息（作为工具条使用）
+	2.补充
+	    a.herf 用于描述元素的链接
+		
+三.标题段落
+    1.标题 通过<h1>-<h6>标签进行定义的
+	2.html水平线  <hr>
+	3.html注释 <!-- 这是一个注释 -->
+	4.换行 <p>这个<br>段落<br>演示了分行的效果</p>
+	
+四.HTML文本格式化
+    1.文本格式化标签
+	     a.<b>  定义粗体文本
+		 b.<em> 定义着重文字
+		 c.<i>  定义斜体字
+		 d.<strong> 定义加重语气
+		 e.<sub><sup> 定义上标下标字
+	2.“计算机输出”标签
+	     a.<code> 定义计算机代码
+		 b.<var>  定义变量
+		 c.<pre>  定义预格式文本
+	3.引文，引用及标签定义
+	     a.<abbr> 定义缩写
+		 b.<address> 定义地址
+		 c.<blockquote> 定义长的引用
+		 d.<q>  短
+		 e.<cite> 定义引用，引证
+
+五.HTML链接
+    1.target属性
+	      将targrt的属性值设为_blank,链接将会在新窗口打开 
+	2.id属性
+	      id属性可用于创建在一个HTML文档书签标记。书签是不以任何特殊的方式显示，在HTML文档中是不显示的
+          补充：（实例）
+		      在HTML文档中插入ID:
+              <a id="tips">有用的提示部分</a> 
+              在HTML文档中创建一个链接到"有用的提示部分(id="tips"）"：
+              <a href="#tips">访问有用的提示部分</a> 
+              或者，从另一个页面创建一个链接到"有用的提示部分(id="tips"）"：
+              <a href="http://www.runoob.com/html/html-links.html#tips">
+                      访问有用的提示部分</a>
+	3.图片链接
+	    a.有边框图片链接   <img  border="10" src="smiley.gif" alt="HTML 教程" width="32" height="32"></a>
+		b.无边框图片链接   将border设置为border="0"
+	4.跳出框架
+	    a.target="_top"
+	5.创建电子邮箱链接   
+	    a.简单   <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+		b.复杂   <a href="mailto:someone@example.com?cc=someoneelse@example.com&bcc=andsomeoneelse@example.com&subject=Summer%20Party&body=You%20are%20invited%20to%20a%20big%20summer%20party!" target="_top">发送邮件!</a>
+
+六.HTML <head>
+    1.<title>元素
+	    定义了浏览器工具栏的标题，当网页添加到收藏夹时，显示在收藏夹中的标题
+	2.<base>元素
+	    <base> 标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接:
+		    如<base herf="http://www.runoob.com/images/" target="_blank">
+	3.<link>元素
+	    定义了文档与外部资源之间的关系
+		    如<link rel="stylesheet" type="text/css" href="mystyle.css">
+	4.<style>元素
+	    a.<style> 标签定义了HTML文档的样式文件引用地址.在<style> 元素中你也可以直接添加样式来渲染 HTML 文档:
+	    b.实例
+		  <style type="text/css">
+		  body [background-color:yellow}
+		  p{color:blue}
+		  </style>
+	5.<meta>元素
+	    为搜索引擎定义关键词:
+        <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+        为网页定义描述内容:
+        <meta name="description" content="免费 Web & 编程 教程">
+        定义网页作者:
+        <meta name="author" content="Runoob">
+        每30秒钟刷新当前页面:
+        <meta http-equiv="refresh" content="30">
+	6.<script> 元素
+	    <script>标签用于加载脚本文件
+	
+七.HTML CSS
+    1.css添加方式
+	    内联样式- 在HTML元素中使用"style" 属性 
+        内部样式表 -在HTML文档头部 <head> 区域使用<style> 元素 来包含CSS
+        外部引用 - 使用外部 CSS 文件
+	2.内联样式
+	    a.背景颜色: background-color:yellow
+		b.字体，字体颜色，字体大小：font-family:verdana;color:red;font-size:20px;
+		c.文本对齐方式：  text-align:center/right/left
+	3.内部样式表
+	    实例：
+		<head>
+        < style type="text/css">
+        body {background-color:yellow;}
+        p {color:blue;}
+        </style>
+        </head>
+	4.外部引用
+	    <head>
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        </head>
+	
+八.HTML图像
+    1.图像标签<img>和源属性<Src>
+	    <img>是空标签，它只包含属性，并且没有闭合标签。
+		src指“source”。源属性的值是图像的URL地址，
+	2.设置图像的高度和宽度
+	    weith height 单位为px
+	3.Alt属性
+	    为图像定义一串可替换的文本，当游览器无法载入图象时，游览器将会显示这个替代性的文本而不是图像；
+	4.创建带有可供点击区域的图像地图
+	    <img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap">
+        <map name="planetmap">
+        <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
+        <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+        <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+        </map>
+	
+九.HTML表格
+    1.<table> 定义表格 <th>定义表格的表头 <tr>定义表格的行 <td>定义表格单元
+	2.带有标题的表格
+	    <caption>Monthly savings</caption>
+	3.跨行或者跨列的表格
+	    a.跨行两格：<th colspan="2">Telephone</th>
+		b.跨列两格：<th rowspan="2">Telephone:</th>
+	4.单元格边距：<table border="1” cellpadding="10">
+	5.单元格间距：<table border="1” cellspacing="10">
+	
+十.HTML列表
+    1.无序列表 
+	    <ul>
+        <li>Coffee</li>
+        <li>Milk</li>
+        </ul>
+	2.有序列表
+	    <ol start=“50”> （序号从50开始）
+        <li>Milk</li>
+        </ol>
+	3.不同的有序列表
+	    <ol type="A"> 为大写字母列表 <ol type="a">为小写字母列表 type="I" 为罗马数字列表
+	4.不同的无序列表
+	    <ul style="list-style-type:disc">  圆点 circle 圆圈 square：正方形
+	
+十一.HTML区块
+    1.块级元素
+	    块级元素在浏览器显示时，通常会以新行来开始（和结束）。
+        实例: <h1>, <p>, <ul>, <table> 
+	2.内联元素
+	    内联元素在显示时通常不会以新行开始。
+        实例: <b>, <td>, <a>, <img>
+	3.div元素（块级元素）
+	    如果与 CSS 一同使用，<div> 元素可用于对大的内容块设置样式属性。
+        <div> 元素的另一个常见的用途是文档布局
+	4.<span>元素
+	    <span> 元素是内联元素，可用作文本的容器
+	5.布局
+	     a.使用div布局（推荐）实例：
+		    <div id="container" style="width:500px">
+            <div id="header" style="background-color:#FFA500;">
+            <h1 style="margin-bottom:0;">主要的网页标题</h1></div> 
+            <div id="menu" style="background-color:#FFD700;height:200px;width:100px;float:left;">
+            <b>菜单</b><br>
+              HTML<br>
+             CSS<br>
+             JavaScript</div> 
+            <div id="content" style="background-color:#EEEEEE;height:200px;width:400px;float:left;">
+             内容在这里</div>
+            <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+             版权 © runoob.com</div>
+            </div>
+		b.使用<table>布局（不推荐使用) 实例：
+		    <table width="500" border="0">
+            <tr>
+            <td colspan="2" style="background-color:#FFA500;">
+            <h1>主要的网页标题</h1>
+            </td>
+            </tr> 
+            <tr>
+            <td style="background-color:#FFD700;width:100px;">
+            <b>菜单</b><br>
+            HTML<br>
+            CSS<br>
+            JavaScript
+            </td>
+            <td style="background-color:#eeeeee;height:200px;width:400px;">
+            内容在这里</td>
+            </tr>
+            <tr>
+            <td colspan="2" style="background-color:#FFA500;text-align:center;">
+            版权 © runoob.com</td>
+            </tr>
+            </table>
+
+十二.表单和输入
+    1.输入元素：<input>  输入类型由（type)决定
+	         a.文本域：<input type="text">
+			 b.密码字段:<input type="password">
+			 c.单选按钮:<input type="radio">
+			 d.复选框： <input type="checkbox">
+			 e.提交按钮 <input type="submit">
+			 f.预选下拉列表：
+			    <select name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat" selected>Fiat</option>
+                <option value="audi">Audi</option>
+                </select>
+	2.带有输入框和确认按钮的实例：
+	        <form action="demo-form.php">
+            First name: <input type="text" name="FirstName" value="Mickey"><br>
+            Last name: <input type="text" name="LastName" value="Mouse"><br>
+            <input type="submit" value="提交">
+            </form>
+	3.表单标签
+	        a.<input> 定义输出域
+			b.<textarea> 定义文本域（一个多行的输出控件
+			c.<option> 定义下拉选项列表的选项
+			d.<select> 定义下拉选项列表
+			e.<button> 定义一个点击按钮
+
+十三.HTML框架
+     通过使用框架，你可以在同一个浏览器窗口中显示不止一个页面。
+	1.iframe语法：
+            <iframe src="URL"></iframe> 
+            该URL指向不同的网页。
+	2.Iframe 设置高度和宽度
+	        <iframe src="demo_iframe.htm" width="200" height="200"></iframe>
+	3.移除边框
+	        <iframe src="demo_iframe.htm" frameborder="0"></iframe>
+	4.使用iframe来显示目标链接页面：
+	        <iframe src="demo_iframe.htm" name="iframe_a"></iframe>
+            <p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p>
+		
+十四.HTML颜色
+    1.<p style="background-color:rgb(255,255,0)">
+        通过 rbg 值设置背景颜色 </p>
+	2.17标准颜色：黑色，蓝色，水，紫红色，灰色，绿色，石灰，栗色，海军，橄榄，橙，
+	            紫，红，白，银，蓝绿色，黄色
+	3.颜色值由十六进制来表示红、绿、蓝（RGB）。
+                每个颜色的最低值为 0(十六进制为 00)，最高值为 255(十六进制为FF)。
+
+十五.HTML脚本
+    1.<scripe>标签
+        a.在body中插入脚本
+		    <script>
+            document.write("Hello World!");
+            </script>
+	2.<noscripe>
+	     <noscript> 标签提供无法使用脚本时的替代内容，比方在浏览器禁用脚本时，或浏览器不支持客户端脚本时。
+	3.<scripe>体验:
+	    a.JavaScript可以直接在HTML输出:
+            document.write("<p>这是一个段落。</p>");
+        b.JavaScript事件响应:
+            <button type="button" onclick="myFunction()">点我！</button>
+        c.JavaScript处理 HTML 样式:
+            document.getElementById("demo").style.color="#ff0000";
+	
+
+			
+	
