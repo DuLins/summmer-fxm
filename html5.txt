@@ -1,0 +1,761 @@
+一.HTML5新元素
+    1.<canvas>新元素: 标签定义图形，比如图表和其他图像，此标签基于js的绘图API
+	2.新多媒体元素
+	     a. <audo>: 定义音频内容
+		 b. <video>：定义视频（video或者audio）
+		 c. <source>: 定义多媒体资源<video>和<audio>
+		 d. <embed>: 定义嵌入的内容，比如插件。
+		 e. <track>: 为诸如 <video> 和 <audio> 元素之类的媒介规定外部文本轨道。
+	3.新表单元素
+	     a. <datalist>: 定义选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。
+		 b. <keygen>: 规定用于表单的密匙对生成器字段。
+		 c. <output>: 定义不同类型的输出，比如脚本的输出。
+		 
+二.HTML5 Canvas
+        HTML5 <canvas> 元素用于图形的绘制,canvas> 标签只是图形容器，您必须使用脚本来绘制图形。
+	1.创建一个画布（canvas）
+	     a.<canvas id="myCanvas" width="200" height="100"></canvas>  （默认没有边框没有内容）
+		 b.用style设置边框：style="border:1px solid #000000;">
+	2.实例：
+	    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+         您的浏览器不支持 HTML5 canvas 标签。
+        </canvas>
+
+        <script>
+         var c=document.getElementById("myCanvas");
+         var ctx=c.getContext("2d");
+         ctx.fillStyle="#FF0000";
+         ctx.fillRect(0,0,150,85);
+		</script>
+	3.canvas坐标
+	    canvas左上角坐标为（0，0）；
+		   fillRect 方法拥有参数 (0,0,150,75)。意思是：在画布上绘制 150x75 的矩形，从左上角开始 (0,0)。
+	4.canvas路径
+	    a.画线实例：
+		   var c=document.getElementById("myCanvas");
+           var ctx=c.getContext("2d");
+           ctx.moveTo(0,0);
+           ctx.lineTo(200,100);
+           ctx.stroke();
+		 b.画圆实例：
+		   var c=document.getElementById("myCanvas");
+           var ctx=c.getContext("2d");
+           ctx.beginPath();
+           ctx.arc(95,50,40,0,2*Math.PI);
+           ctx.stroke();
+	5.canvas文本
+	    a.font - 定义字体
+          fillText(text,x,y) - 在 canvas 上绘制实心的文本
+          strokeText(text,x,y) - 在 canvas 上绘制空心的文本
+		b.实例：
+		  var c=document.getElementById("myCanvas");
+          var ctx=c.getContext("2d");
+          ctx.font="30px Arial";
+          ctx.fillText("Hello World",10,50);
+	6.canvas渐变
+	      createLinearGradient(x,y,x1,y1) - 创建线条渐变
+          createRadialGradient(x,y,r,x1,y1,r1) - 创建一个径向/圆渐变
+		实例：（线性渐变）
+		   var c=document.getElementById("myCanvas");
+           var ctx=c.getContext("2d");
+		   // 创建渐变
+           var grd=ctx.createLinearGradient(0,0,200,0);
+           grd.addColorStop(0,"red");
+           grd.addColorStop(1,"white");
+           // 填充渐变
+           ctx.fillStyle=grd;
+           ctx.fillRect(10,10,150,80);
+	7.canvas图像
+	      把一幅图像放置到画布上, 使用以下方法: drawImage(image,x,y)
+		实例：
+		  var c=document.getElementById("myCanvas");
+          var ctx=c.getContext("2d");
+          var img=document.getElementById("scream");
+          ctx.drawImage(img,10,10);
+		  
+三.HTML5内联SVG
+    1.解释：SVG 指可伸缩矢量图形 (Scalable Vector Graphics)，图像在放大或改变尺寸的情况下其图形质量不会有损失。
+	2.与其他图象格式（如JPEG和GIF）相比，使用SVG的优势：
+	     a.SVG图像可通过文本编辑器来创建和修改。
+		 b.可被搜索，索引，脚本化或压缩
+		 c.可在任何分辨率下被高质量地打印
+	3.实例：
+	    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="190">
+        <polygon points="100,10 40,180 190,60 10,60 160,180"
+        style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;">
+        </svg>
+
+四.HTML5 MathML
+    1.实例：
+	    <body>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+         <mrow>
+            <msup><mi>a</mi><mn>2</mn></msup>
+            <mo>+</mo>    
+            <msup><mi>b</mi><mn>2</mn></msup>
+            <mo>=</mo>\  
+            <msup><mi>c</mi><mn>2</mn></msup>
+         </mrow>\    
+        </math>\  
+        </body>
+
+五.HTML5拖放
+    实例：
+	     <style type="text/css">
+         #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+         </style>
+         <script>
+         function allowDrop(ev)
+        {
+         ev.preventDefault();
+        }
+         function drag(ev)
+        {
+         ev.dataTransfer.setData("Text",ev.target.id);（设置被拖数据地数据类型和值）（被拖数据是被拖元素的 id ("drag1")）
+        }
+         function drop(ev)
+        {
+          ev.preventDefault();（避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）
+         var data=ev.dataTransfer.getData("Text");（获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据）
+         ev.target.appendChild(document.getElementById(data));
+        }
+        </script>
+        </head>
+        <body>
+        <p>拖动 RUNOOB.COM 图片到矩形框中:</p>
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>（ondragover规定在何处放置被拖动的数据）
+        <br>
+        <img id="drag1" src="/images/logo.png" draggable="true" ondragstart="drag(event)" width="336" height="69">（<img draggable="true"设置元素可被拖放）
+        </body>
+	
+六.HTML5 地理定位
+    1.实例：
+	     <p id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>
+         <button onclick="getLocation()">点我</button>
+         <script>
+         var x=document.getElementById("demo");
+         function getLocation()
+        {
+	      if (navigator.geolocation)
+	    {
+		  navigator.geolocation.getCurrentPosition(showPosition);
+		  <!--getCurrentPosition()运行成功，则向参数showPosition中规定的函数返回一个coordinates对象-->
+	    }
+	      else
+	    {
+		  x.innerHTML="该浏览器不支持获取地理位置。";
+	    }
+        }
+          function showPosition(position)
+        {
+	      x.innerHTML="纬度: " + position.coords.latitude + 
+	      "<br>经度: " + position.coords.longitude;	
+        }
+         </script>
+	2.处理错误和实例
+	    <!--navigator.geolocation.getCurrentPosition(showPosition,showError);-->
+	     function showError(error)
+        {
+	        switch(error.code) 
+	       {
+		      case error.PERMISSION_DENIED:
+			   x.innerHTML="用户拒绝对获取地理位置的请求。"
+			     break;
+		      case error.POSITION_UNAVAILABLE:
+			   x.innerHTML="位置信息是不可用的。"
+			     break;
+		      case error.TIMEOUT:
+			   x.innerHTML="请求用户地理位置超时。"
+			     break;
+		       case error.UNKNOWN_ERROR:
+			   x.innerHTML="未知错误。"
+			     break;
+	       }
+        }
+	3.在地图中显示结果
+	    function showPosition(position)
+       {
+        var latlon=position.coords.latitude+","+position.coords.longitude;
+ 
+        var img_url="http://maps.googleapis.com/maps/api/staticmap?center="
+        +latlon+"&zoom=14&size=400x300&sensor=false";
+        document.getElementById("mapholder").innerHTML="<img src='"+img_url+"'>";
+       }
+	  
+七.HTML5 Video(视频)
+      实例：
+	  <video width="320" height="240" controls>
+        <source src="movie.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+        您的浏览器不支持 HTML5 video 标签。
+       </video>
+	1.<video> 元素支持三种视频格式： MP4, WebM, 和 Ogg。
+	2.使用DOM进行控制
+	    HTML5 <video> 和 <audio> 元素同样拥有方法、属性和事件。
+        <video> 和 <audio>元素的方法、属性和事件可以使用JavaScript进行控制.
+		实例：
+		    <div style="text-align:center"> 
+              <button onclick="playPause()">播放/暂停</button> 
+              <button onclick="makeBig()">放大</button>
+              <button onclick="makeSmall()">缩小</button>
+              <button onclick="makeNormal()">普通</button>
+            <br> 
+            <video id="video1" width="420">
+              <source src="mov_bbb.mp4" type="video/mp4">
+              <source src="mov_bbb.ogg" type="video/ogg">
+              您的浏览器不支持 HTML5 video 标签。
+            </video>
+            </div> 
+            <script> 
+              var myVideo=document.getElementById("video1"); 
+              function playPause()
+                { 
+	              if (myVideo.paused) 
+	               myVideo.play(); 
+	              else 
+	               myVideo.pause(); 
+                } 
+
+	          function makeBig()
+                { 
+	               myVideo.width=560; 
+                } 
+              function makeSmall()
+                { 
+	               myVideo.width=320; 
+                } 
+              function makeNormal()
+                { 
+	               myVideo.width=420; 
+                } 
+            </script> 
+			
+八.HTML5 Audio(音频)
+    1.实例：
+	   <audio controls>
+         <source src="horse.ogg" type="audio/ogg">
+         <source src="horse.mp3" type="audio/mpeg">
+         您的浏览器不支持 audio 元素。
+       </audio>
+
+九.HTML5 Input类型
+    1.color;
+	    <form action="demo-form.php">
+            选择你喜欢的颜色: <input type="color" name="favcolor"><br>
+            <input type="submit">
+        </form>
+	2.data:
+	    <form action="demo-form.php">
+            生日: <input type="date" name="bday">
+            <input type="submit">
+        </form>
+	3.datatime-local:(定义一个日期和时间（无时区））
+	    <form action="demo-form.php">
+            生日 (日期和时间): <input type="datetime-local" name="bdaytime">
+            <input type="submit">
+        </form>
+	4.email:(在提交表单时，会自动验证email域的值是否合法）
+	    <form action="demo-form.php">
+            E-mail: <input type="email" name="usremail">
+            <input type="submit">
+        </form>
+	5.month：(允许你选择一个月份)
+	6.number:
+	    number 类型用于应该包含数值的输入域。
+        您还能够设定对所接受的数字的限定：
+        数量 ( 1 到 5 之间 ): <input type="number" name="quantity" min="1" max="5">
+	    required:规定输入字段的值是必需的
+        size:规定输入字段中的可见字符数
+        step:规定输入字段的合法数字间隔
+		value:规定输入字段的默认值
+	7.range:
+	    range 类型用于应该包含一定范围内数字值的输入域。
+        range 类型显示为滑动条
+	    <input type="range" name="points" min="1" max="10">
+	8.search:
+	    search 类型用于搜索域，比如站点搜索或 Google 搜索。
+		Search Google: <input type="search" name="googlesearch">
+	9.URl:
+	    <form action="demo-form.php">
+          添加你的主页: <input type="url" name="homepage"><br>
+          <input type="submit">
+        </form>
+
+十.HTML5 表单元素
+    1. <datalist>
+	      元素规定输入域的选项列表。 
+          属性规定 form 或 input 域应该拥有自动完成功能。当用户在自动完成域中开始输入时，浏览器应该在该域中显示填写的选项：
+		  <input list="browsers">
+             <datalist id="browsers">
+               <option value="Internet Explorer">
+               <option value="Firefox">
+               <option value="Chrome">
+               <option value="Opera">
+               <option value="Safari">
+             </datalist>
+	2.<keygen>元素
+	      <keygen> 元素的作用是提供一种验证用户的可靠方法。 
+          <keygen>标签规定用于表单的密钥对生成器字段。
+          当提交表单时，会生成两个键，一个是私钥，一个公钥。
+          私钥（private key）存储于客户端，公钥（public key）则被发送到服务器。
+		     <form action="demo_keygen.asp" method="get">
+                用户名: <input type="text" name="usr_name">
+                加密: <keygen name="security">
+                <input type="submit">
+             </form>
+    3.<output>元素
+	       <output> 元素用于不同类型的输出，比如计算或脚本输出：
+		      <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+                  <input type="range" id="a" value="50">100 +
+                  <input type="number" id="b" value="50">=
+                  <output name="x" for="a b"></output>
+              </form>
+			  
+十一.HTML5 新表单属性
+    1.<form> novalidate 属性
+            novalidate 属性规定在提交表单时不应该验证 form 或 input 域。
+			<form action="demo-form.php" novalidate>
+	2.<input> autofocus
+	        autofocus 属性规定在页面加载时，域自动地获得焦点。
+			First name:<input type="text" name="fname" autofocus>
+	3.<input> form
+	        form 属性规定输入域所属的一个或多个表单。
+			<form action="demo-form.php" id="form1">
+               First name: <input type="text" name="fname"><br>
+               <input type="submit" value="提交">
+            </form>
+            Last name: <input type="text" name="lname" form="form1">
+	4.<input> formaction
+	        The formaction 属性用于描述表单提交的URL地址.
+            The formaction 属性会覆盖<form> 元素中的action属性.
+            注意: The formaction 属性用于 type="submit" 和 type="image".
+			<input type="submit" formaction="demo-admin.php" value="提交">
+	5.<input> formenctype
+	        formenctype 属性描述了表单提交到服务器的数据编码 (只对form表单中 method="post" 表单)
+            formenctype 属性覆盖 form 元素的 enctype 属性。
+			<input type="submit" formenctype="multipart/form-data" value="以 Multipart/form-data 提交">
+	6.<input> formmethod
+ 	        formmethod 属性定义了表单提交的方式。
+            formmethod 属性覆盖了 <form> 元素的 method 属性
+			<input type="submit" formmethod="post" formaction="demo-post.php" value="使用 POST 提交">
+	7.<input> formnovalidate 
+            novalidate 属性是一个 boolean 属性.
+            novalidate属性描述了 <input> 元素在表单提交时无需被验证。
+			<input type="submit" formnovalidate value="不验证提交">
+	8.<input> list 
+            list 属性规定输入域的 datalist。datalist 是输入域的选项列表。
+			<input list="browsers">
+            <datalist id="browsers">
+               <option value="Internet Explorer">
+               <option value="Firefox">
+               <option value="Chrome">
+               <option value="Opera">
+               <option value="Safari">
+            </datalist> 
+    9.<input> min 和 max
+            min、max 和 step 属性用于为包含数字或日期的 input 类型规定限定（约束）。
+    10.<input> multiple 属性
+            multiple 属性是一个 boolean 属性.
+            multiple 属性规定<input> 元素中可选择多个值。
+			<form action="demo-form.php">
+               选择图片: <input type="file" name="img" multiple>
+               <input type="submit">
+            </form>
+	11.<input> required 属性
+            required 属性是一个 boolean 属性.
+            required 属性规定必须在提交之前填写输入域（不能为空）
+			Username: <input type="text" name="usrname" required>
+	12.<input> step 
+            step 属性为输入域规定合法的数字间隔。
+            如果 step="3"，则合法的数是 -3,0,3,6 等
+			<input type="number" name="points" step="3">
+			
+十二.HTML5 语义元素
+    1.HTML5 <section>
+            <section> 标签定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分。
+			<section>
+                <h1>WWF</h1>
+                <p>The World Wide Fund for Nature (WWF) is....</p>
+            </section>
+	2.HTML5 <nav>
+            <nav> 标签定义导航链接的部分。
+            <nav> 元素用于定义页面的导航链接部分区域，但是，不是所有的链接都需要包含在 <nav> 元素中! 
+			<nav>
+                <a href="/html/">HTML</a> |
+                <a href="/jquery/">jQuery</a>
+            </nav>
+	3.HTML5 <aside>
+            <aside> 标签定义页面主区域内容之外的内容（比如侧边栏）。
+            aside 标签的内容应与主区域的内容相关.
+	4.HTML5 <header> 
+            <header>元素描述了文档的头部区域
+            <header>元素主要用于定义内容的介绍展示区域.
+            在页面中你可以使用多个<header> 元素.
+			  <header>
+                 <h1>Internet Explorer 9</h1>
+                 <p><time pubdate datetime="2011-03-15"></time></p>
+              </header>
+	5.HTML5 <footer>
+            <footer> 元素描述了文档的底部区域.
+            <footer> 元素应该包含它的包含元素
+            一个页脚通常包含文档的作者，著作权信息，链接的使用条款，联系信息等
+			  <footer>
+                 <p>Posted by: Hege Refsnes</p>
+                 <p><time pubdate datetime="2012-03-01"></time></p>
+              </footer>
+	6.HTML5 <figure> 和 <figcaption> 
+            <figure>标签规定独立的流内容（图像、图表、照片、代码等等）。
+            <figure> 元素的内容应该与主内容相关，但如果被删除，则不应对文档流产生影响。
+            <figcaption> 标签定义 <figure> 元素的标题.
+            <figcaption>元素应该被置于 "figure" 元素的第一个或最后一个子元素的位置。
+	
+十三.HTML5 Web存储
+        使用HTML5可以在本地存储用户的浏览数据
+	1.localStorage 和 sessionStorage 
+        客户端存储数据的两个对象为：
+        localStorage - 用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去除。
+        sessionStorage - 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
+	2.localStorage
+	    localStorage.sitename="菜鸟教程";
+        document.getElementById("result").innerHTML="网站名：" + localStorage.sitename;
+	    实例：
+		    if (localStorage.clickcount)
+              {
+                localStorage.clickcount=Number(localStorage.clickcount)+1;
+              }
+            else
+              {
+                localStorage.clickcount=1;
+              }
+               document.getElementById("result").innerHTML=" 你已经点击了按钮 " + localStorage.clickcount + " 次 ";
+			（即使退出，进去仍然会从上一次计数开始）
+	3.sessionStorage
+	    实例：
+		    if (sessionStorage.clickcount)
+              {
+                 sessionStorage.clickcount=Number(sessionStorage.clickcount)+1;
+              }
+            else
+              {
+                 sessionStorage.clickcount=1;
+              }
+             document.getElementById("result").innerHTML="在这个会话中你已经点击了该按钮 " + sessionStorage.clickcount + " 次 ";
+			 （退出后计数将重新开始）
+	4.Web Storage 开发一个简单的网站列表程序
+	    实例： <body>  
+    <div style="border: 2px dashed #ccc;width:320px;text-align:center;">     
+        <label for="sitename">网站名(key)：</label>  
+        <input type="text" id="sitename" name="sitename" class="text"/>  
+        <br/>  
+        <label for="siteurl">网 址(value)：</label>  
+        <input type="text" id="siteurl" name="siteurl"/>  
+        <br/>  
+        <input type="button" onclick="save()" value="新增记录"/>  
+        <hr/>  
+        <label for="search_phone">输入网站名：</label>  
+        <input type="text" id="search_site" name="search_site"/>  
+        <input type="button" onclick="find()" value="查找网站"/>  
+        <p id="find_result"><br/></p>  
+    </div>  
+    <br/>  
+    <div id="list">  
+    </div>  
+    <script>
+	// 载入所有存储在localStorage的数据
+	loadAll(); 	
+		
+    //保存数据  
+    function save(){  
+        var siteurl = document.getElementById("siteurl").value;  
+        var sitename = document.getElementById("sitename").value;  
+        localStorage.setItem(sitename, siteurl);
+        alert("添加成功");
+    }
+    //查找数据  
+    function find(){  
+        var search_site = document.getElementById("search_site").value;  
+        var siteurl = localStorage.getItem(search_site);  
+        var find_result = document.getElementById("find_result");  
+        find_result.innerHTML = search_site + "的网址是：" + siteurl;  
+    }
+    //将所有存储在localStorage中的对象提取出来，并展现到界面上
+    function loadAll(){  
+        var list = document.getElementById("list");  
+        if(localStorage.length>0){  
+            var result = "<table border='1'>";  
+            result += "<tr><td>key</td><td>value</td></tr>";  
+            for(var i=0;i<localStorage.length;i++){  
+                var sitename = localStorage.key(i);  
+                var siteurl = localStorage.getItem(sitename);  
+                result += "<tr><td>"+sitename+"</td><td>"+siteurl+"</td></tr>";  
+            }  
+            result += "</table>";  
+            list.innerHTML = result;  
+        }else{  
+            list.innerHTML = "数据为空……";  
+        }  
+    }      
+    </script>
+    </body>  
+	5.更多情况下我们存储的数据会更复杂。接下来我们将使用 JSON.stringify 来存储对象数据
+	     实例：
+		 <body>  
+    <div style="border: 2px dashed #ccc;width:320px;text-align:center;">
+        <label for="keyname">别名(key):</label>  
+        <input type="text" id="keyname" name="keyname" class="text"/>  
+        <br/>  
+        <label for="sitename">网站名：</label>  
+        <input type="text" id="sitename" name="sitename" class="text"/>  
+        <br/>  
+        <label for="siteurl">网 址：</label>  
+        <input type="text" id="siteurl" name="siteurl"/>  
+        <br/>  
+        <input type="button" onclick="save()" value="新增记录"/>  
+        <hr/>  
+        <label for="search_phone">输入别名(key)：</label>  
+        <input type="text" id="search_site" name="search_site"/>  
+        <input type="button" onclick="find()" value="查找网站"/>  
+        <p id="find_result"><br/></p>  
+    </div>  
+    <br/>  
+    <div id="list">  
+    </div>  
+    <script>
+    //保存数据  
+    function save(){  
+        var site = new Object;
+        site.keyname = document.getElementById("keyname").value;
+        site.sitename = document.getElementById("sitename").value;  
+        site.siteurl = document.getElementById("siteurl").value;
+        var str = JSON.stringify(site); // 将对象转换为字符串
+        localStorage.setItem(site.keyname,str);  
+        alert("保存成功");
+    }  
+    //查找数据  
+    function find(){  
+        var search_site = document.getElementById("search_site").value;  
+        var str = localStorage.getItem(search_site);  
+        var find_result = document.getElementById("find_result");
+        var site = JSON.parse(str);  
+        find_result.innerHTML = search_site + "的网站名是：" + site.sitename + "，网址是：" + site.siteurl;  
+    }  
+    
+    //将所有存储在localStorage中的对象提取出来，并展现到界面上
+	// 确保存储的 keyname 对应的值为转换对象，否则JSON.parse会报错
+    function loadAll(){  
+        var list = document.getElementById("list");  
+        if(localStorage.length>0){  
+            var result = "<table border='1'>";  
+            result += "<tr><td>别名</td><td>网站名</td><td>网址</td></tr>";  
+            for(var i=0;i<localStorage.length;i++){ 
+                var keyname = localStorage.key(i);  
+                var str = localStorage.getItem(keyname);  
+                var site = JSON.parse(str);  
+                result += "<tr><td>"+site.keyname+"</td><td>"+site.sitename+"</td><td>"+site.siteurl+"</td></tr>";  
+            }  
+            result += "</table>";  
+            list.innerHTML = result;  
+        }else{  
+            list.innerHTML = "数据为空...";  
+        }  
+    }  
+    </script>
+     </body>
+	 
+十四.HTML5 Web SQL 数据库
+    1.核心方法
+	    openDatabase：这个方法使用现有的数据库或者新建的数据库创建一个数据库对象。
+        transaction：这个方法让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+        executeSql：这个方法用于执行实际的 SQL 查询。
+	2.打开数据库
+	    var db = openDatabade('mydb','1.0','Teat DB',2*1024*1024)
+		openDatabase() 方法对应的五个参数说明：
+                  数据库名称
+                  版本号
+                  描述文本
+                  数据库大小
+                  创建回调
+	3.执行查询操作
+	    db.transaction(fanction(tx){
+		    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS(id unique, log)');
+		});
+		上面的语句执行后会在 'mydb' 数据库中创建一个名为 LOGS 的表。
+	4.插入数据
+	    var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+			tx.executeSql('INSERT INTO LOGS(id unique, log) VALUES(1, "菜鸟教程")');
+			tx.executeSql('INSERT INTO LOGS(id unique, log) VALUES(2,"www.runoob.com")');
+           });
+	    使用动态值来插入数据
+		db.transaction(fanction (tx){
+		 tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS(id unique,log)');
+		 tx.executeSql('INSERT INTO LOGS(id ,log) VALUES(?,?)',[e_id,e_log]);
+		 });
+    5.读取数据
+	    db.transaction(function (tx) {
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+            var len = results.rows.length, i;
+            msg = "<p>查询记录条数: " + len + "</p>";
+            document.querySelector('#status').innerHTML +=  msg;
+            for (i = 0; i < len; i++){
+            alert(results.rows.item(i).log );
+             }
+          }, null);
+        });
+    6.删除记录
+	    db.transaction(function (tx) {
+        tx.executeSql('DELETE FROM LOGS  WHERE id=1');
+            });
+        删除指定的数据id也可以是动态的：
+        db.transaction(function(tx) {
+        tx.executeSql('DELETE FROM LOGS WHERE id=?', [id]);
+            });
+	7.更新记录
+	    db.transaction(function (tx) {
+        tx.executeSql('UPDATE LOGS SET log=\'www.w3cschool.cc\' WHERE id=2');
+          });
+        更新指定的数据id也可以是动态的：
+        db.transaction(function(tx) {
+        tx.executeSql('UPDATE LOGS SET log=\'www.w3cschool.cc\' WHERE id=?', [id]);
+        });
+十五.HTML5应用程序缓存(Application Cache)
+         web 应用可进行缓存，并可在没有因特网连接时进行访问。
+		 离线浏览 - 用户可在应用离线时使用它们
+         速度 - 已缓存资源加载得更快
+         减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源
+	1.Cache Manifest实例：
+	     <html manifest="demo_html.appcache">
+         <head> 
+         <meta charset="UTF-8">
+         <title>菜鸟教程(runoob.com)</title> 
+         </head>
+         <body>
+         <script src="demo_time.js">
+         </script>
+         <p id="timePara"><button onclick="getDateTime()">获取日期和时间</button></p>
+         <p><img src="logo.png" width="336" height="69"></p>
+         <p>尝试打开 <a href="tryhtml5_html_manifest.htm" target="_blank">这个页面</a>, 在离线的状态下重新载入这个页面，页面也可以访问。</p>
+         </body>
+         </html>
+	
+十六.HTML5 Web Workers
+        web worker 是运行在后台的 JavaScript，不会影响页面的性能,
+		   您可以继续做任何愿意做的事情：点击、选取内容等等
+    1.实例：
+	     <body>
+         <p>计数： <output id="result"></output></p>
+         <button onclick="startWorker()">开始工作</button> 
+         <button onclick="stopWorker()">停止工作</button>
+         <p><strong>注意：</strong> Internet Explorer 9 及更早 IE 版本浏览器不支持 Web Workers.</p>
+         <script>
+         var w;
+		 function startWorker() {
+         if(typeof(Worker) !== "undefined") {
+         if(typeof(w) == "undefined") {
+            w = new Worker("demo_workers.js");
+         }
+         w.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+           };
+          } else {
+           document.getElementById("result").innerHTML = "抱歉，你的浏览器不支持 Web Workers...";
+         }
+         }
+         function stopWorker() 
+         { 
+          w.terminate();
+          w = undefined;
+         }
+         </script>
+         </body>
+	//demo_workers.js 文件代码：
+         var i=0;
+         function timedCount()
+         {
+          i=i+1;
+          postMessage(i);（用于向 HTML 页面传回一段消息。）
+          setTimeout("timedCount()",500);
+         }
+		 timedCount();
+		 
+十七.HTML5 服务器发送事件(Server-Sent Events) 
+         HTML5 服务器发送事件（server-sent event）允许网页获得来自服务器的更新。
+	1.Server-Sent时间-单向消息传递
+	     网页自动获取来自服务器的更新
+	2.接收Server-Sent事件通知
+	     <script>
+         if(typeof(EventSource)!=="undefined")
+         {
+	        var source=new EventSource("demo_sse.php");（创建一个新的 EventSource 对象，然后规定发送更新的页面的 URL）
+	        source.onmessage=function(event)
+	     {
+		    document.getElementById("result").innerHTML+=event.data + "<br>";
+			//当 onmessage 事件发生时，把已接收的数据推入 id 为 "result" 的元素中
+	     };
+         }
+         else
+         {
+	        document.getElementById("result").innerHTML="抱歉，你的浏览器不支持 server-sent 事件...";
+         }
+         </script>
+	3.服务器端代码实例（php）：
+	     <?php 
+           header('Content-Type: text/event-stream'); 
+           header('Cache-Control: no-cache'); 
+           $time = date('r'); 
+           echo "data: The server time is: {$time}\n\n"; 
+           flush(); 
+         ?> 
+		 代码解释：
+		   把报头 "Content-Type" 设置为 "text/event-stream"
+           规定不对页面进行缓存
+           输出发送日期（始终以 "data: " 开头）
+           向网页刷新输出数据
+		   
+十八.HTML 插件
+         扩展 HTML 浏览器的功能
+		 辅助应用程序（helper application）是可由浏览器启动的程序。辅助应用程序也称为插件。
+         辅助程序可用于播放音频和视频（以及其他）。辅助程序是使用 <object> 标签来加载的。
+    1.<object>
+	     a.该标签用于插入对象 (例如在网页中嵌入 Java 小程序, PDF 阅读器, Flash 播放器) 。
+		   <object width="400" height="50" data="bookmark.swf"></object> 
+		 b.<object> 元素同样可用于包含HTML文件：
+		   <object width="100%" height="500px" data="snippet.html"></object> 
+	    c.或者插入一张图片:
+           <object data="audi.jpeg"></object> 
+		
+十九.HTML 音频
+    1.使用<embed>
+	    <embed height="50" width="100" src="horse.mp3">
+    2.使用<object>
+	    <object height="50" width="100" data="horse.mp3"></object>
+	3.使用 HTML5 <audio> 元素
+	    <audio controls>
+           <source src="horse.mp3" type="audio/mpeg">
+           <source src="horse.ogg" type="audio/ogg">
+           Your browser does not support this audio format.
+        </audio> 
+	4.雅虎媒体播放器 - 一个简单的添加音频到你网站上的方式
+	    只需添加一行代码到你的页面或 博客中就可以轻松地将您的HTML页面制作成 专业的播放列表：
+		   <a href="horse.mp3">Play Sound</a>
+           <script src="http://mediaplayer.yahoo.com/latest"></script> 
+    5.使用超链接
+	    <a href="horse.mp3">Play the sound</a> 
+		
+二十.视频播放
+    1.最好的HTML解决方法
+	      <video width="320" height="240" controls>
+          <source src="movie.mp4" type="video/mp4">
+          <source src="movie.ogg" type="video/ogg">
+          <source src="movie.webm" type="video/webm">
+          <object data="movie.mp4" width="320" height="240">
+          <embed src="movie.swf" width="320" height="240">
+          </object> 
+          </video> 
+	2.优酷解决方案
+	    网页中播放视频，那么您可以把视频上传到优酷等视频网站，然后在您的网页中插入 HTML 代码即可播放视频。
+        你可以在各大视频网站的分享入口，找到嵌入的 HTML 代码。
+		<embed src='https://player.youku.com/player.php/sid/XMTQ3MjM5Mjc0MA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' 
+		      type='application/x-shockwave-flash'></embed>
+	
